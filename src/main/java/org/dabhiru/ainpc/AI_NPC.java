@@ -21,7 +21,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.*;
 
 public class AI_NPC extends JavaPlugin implements Listener {
-    private NPCRegistry npcRegistry;
+    NPCRegistry npcRegistry;
     NPC npc;
     private Set<String> executedCommands = new HashSet<>();
     private Map<UUID, NPC> playerNpcInteraction = new HashMap<>();
