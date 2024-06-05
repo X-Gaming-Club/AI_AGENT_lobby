@@ -27,12 +27,17 @@ public class AI_NPC extends JavaPlugin implements Listener {
     private Set<String> executedCommands = new HashSet<>();
     private Map<UUID, NPC> playerNpcInteraction = new HashMap<>();
     private Map<UUID, Long> interactionTimestamps = new HashMap<>();
-    private static final String PREDEFINED_PROMPT = "You are an XGaming AI NPC that answers questions about This Minecraft server and can provide stuff according to the response also. Your Nature is Clever " +
-            "The server has the following features: There are 4 servers connected via portals in the main lobby. The upcoming features include archery, a roller coaster, and a theme-based carnival in this lobby. Now, let me tell you about each server connected through the portals: " +
-            "The first server is a trading server where you can trade according to the inventory used AI to get Trades. It's a survival server. The second server is an assets generation server, a life-steal server where it generates assets like tools, armor, and other Minecraft items with the power of AI. It can provide assets within 1 second. " +
-            "The third server is an anarchy server, similar to the second server but a survival server with AI entities that come to hunt you. This server will soon be replaced, and a new server will come with a special secret. " +
-            "The fourth server is a story mode server where you will get AI quests based on player needs. Completing quests will give you amazing rewards. It can generate unlimited quests with the power of AI. " + "This NPC IS IN MAIN LOBBY SO RESPONSE ACCORDING TO THAT BUT DONT INCLUDE IN Response!!"+
-            "We used Generative AI to create the best AI-based Minecraft servers and Plugins youtube channel @xgaming_club. If a player types in English, respond in English. If a player types in Hinglish (a mix of Hindi and English), respond accordingly. if player message is in hinglish response in hinglish, hinglish is a type of language used when we want to say anything in hindi but typed in english eg bhai mujhe khana do etc"+"You Can Also Provide Items Which Are Under Your System like Starter kits,opening menus,etc";
+    private static final String PREDEFINED_PROMPT = "Hello! I'm your friendly XGaming AI NPC, here to help you with any questions about our Minecraft server and to provide items you need. I'm smart and always ready to assist. " +
+            "Our server has some cool features: there are 4 servers connected through portals in the main lobby. We're also planning to add archery, a roller coaster, and a theme-based carnival. Here's a quick look at each server: " +
+            "1. The trading server is a survival server where you can trade items using AI-driven trades. " +
+            "2. The assets generation server is a life-steal server that quickly provides tools, armor, and other items using AI. " +
+            "3. The anarchy server is another survival server with AI entities hunting players, but it will soon be replaced by a special secret server. " +
+            "Note: I can only give out the starter kit in the lobby if you ask for it. I won't suggest it on my own. " +
+            "4. The story mode server offers AI-generated quests based on what you need, and you can earn amazing rewards by completing them. " +
+            "I'm based in the main lobby, so keep that in mind, but I won't mention it in my responses. " +
+            "We use Generative AI to bring you the best AI-based Minecraft servers and plugins. Don't forget to check out our YouTube channel @xgaming_club! " +
+            "I'll reply in the language you use: English or Hinglish (a mix of Hindi and English). If you type in Hinglish, I'll respond in Hinglish too. " +
+            "Feel free to ask for items like starter kits or to open menus. I'm here to make your experience awesome!";
 
     @Override
     public void onEnable() {
@@ -88,7 +93,7 @@ public class AI_NPC extends JavaPlugin implements Listener {
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
         String message = event.getMessage();
-player.sendMessage(message);
+player.sendMessage(player.getName()+"->"+message);
         if (playerNpcInteraction.containsKey(player.getUniqueId())) {
             event.setCancelled(true); // Cancel the chat event to prevent public chat
 
@@ -114,7 +119,7 @@ player.sendMessage(message);
     private void processPlayerMessage(Player player, String message, String response) {
         FileConfiguration config = getConfig();
         List<Map<?, ?>> responses = config.getMapList("responses");
-
+        boolean commandExecuted = false;
         for (Map<?, ?> res : responses) {
             String keyword = (String) res.get("keyword");
 
@@ -137,26 +142,27 @@ player.sendMessage(message);
                     for (String command : consoleCommands) {
                         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("%player%", player.getName()));
                     }
+                    commandExecuted = true;
 //                    if (Rr != null) {
 //                        for (String r : Rr) {
 //                            player.sendMessage(r);
 //                        }
 //                    }
-                    return;
+
                 }
                 if (playerCommands != null) {
                     for (String command : playerCommands) {
                         player.performCommand(command);
                     }
+                    commandExecuted = true;
 //                    if (Rr != null) {
 //                        for (String r : Rr) {
 //                            player.sendMessage(r);
 //                        }
 //                    }
-                    return;
                 }
 
-                if (perPlayerOneTime) {
+                if (perPlayerOneTime && commandExecuted) {
                     executedCommands.add(commandKey);
                 }
 
