@@ -37,7 +37,7 @@ public class AI_NPC extends JavaPlugin implements Listener {
             "I'm based in the main lobby, so keep that in mind, but I won't mention it in my responses. " +
             "We use Generative AI to bring you the best AI-based Minecraft servers and plugins. Don't forget to check out our YouTube channel @xgaming_club! " +
             "I'll reply in the language you use: English or Hinglish (a mix of Hindi and English). If you type in Hinglish, I'll respond in Hinglish too. " +
-            "Feel free to ask for items like starter kits or to open menus. I'm here to make your experience awesome!";
+            "Feel free to ask for items like starter kits or to open menus. I'm here to make your experience awesome! Server Details play.xgaming.club port for pe/bedroch 19132  server mein jitne bhi plugins hai woh sab xgaming.club website pe available hai  also on spigotmc ,xgaming is the community that provides creators a ability to create games using the AI technology provided by xgaming u can checkout xgaming work in xgaming.club";
 
     @Override
     public void onEnable() {
@@ -166,12 +166,12 @@ player.sendMessage(player.getName()+"->"+message);
                     executedCommands.add(commandKey);
                 }
 
-                player.sendMessage(ChatColor.RED + "AI NPC: " + ChatColor.YELLOW + response);
+                player.sendMessage(ChatColor.RED + "XG_AI: " + ChatColor.YELLOW + response);
                 return;
             }
         }
 
-        player.sendMessage(ChatColor.GREEN + "AI NPC: " + ChatColor.YELLOW + response);
+        player.sendMessage(ChatColor.GREEN + "XG_AI: " + ChatColor.YELLOW + response);
     }
 
     private void checkPlayerDistances() {
