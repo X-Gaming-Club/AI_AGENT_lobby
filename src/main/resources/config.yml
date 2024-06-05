@@ -1,13 +1,15 @@
 responses:
-  - response: "give kit"
+  - response: "Give me diamonds"
     command:
       console:
-        - "give %player% minecraft:diamond_sword"
+        - "give %player% diamond 10"
       player:
-        - "kit"
+        - "say Enjoy your diamonds!"
     perplayer1time: true
-  - response: "menu"
+  - response: "Tell me a joke"
     command:
+      console:
+        - "broadcast %player% wants to hear a joke!"
       player:
-        - "/menu"
+        - "me Here's a joke for you!"
     perplayer1time: false
