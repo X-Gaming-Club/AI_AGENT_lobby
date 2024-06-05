@@ -1,0 +1,13 @@
+responses:
+  - response: "give kit"
+    command:
+      console:
+        - "give %player% minecraft:diamond_sword"
+      player:
+        - "kit"
+    perplayer1time: true
+  - response: "menu"
+    command:
+      player:
+        - "/menu"
+    perplayer1time: false

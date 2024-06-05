@@ -1,0 +1,8 @@
+name: AI-NPC
+version: '${project.version}'
+main: org.dabhiru.ainpc.AI_NPC
+api-version: '1.20'
+commands:
+  spawnnpc:
+    usage: /spawnnpc
+    description: spawns npc
