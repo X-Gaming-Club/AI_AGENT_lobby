@@ -37,6 +37,7 @@ public class AI_NPC extends JavaPlugin implements Listener {
     public void onEnable() {
         getServer().getPluginManager().registerEvents(this, this);
         npcRegistry = CitizensAPI.getNPCRegistry();
+        saveDefaultConfig();
         Bukkit.getScheduler().runTaskTimer(this, this::checkPlayerDistances, 0L, 20L);
     }
 
