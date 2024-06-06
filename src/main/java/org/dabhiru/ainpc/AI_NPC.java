@@ -37,7 +37,7 @@ public class AI_NPC extends JavaPlugin implements Listener {
             "I'm based in the main lobby, so keep that in mind, but I won't mention it in my responses. " +
             "We use Generative AI to bring you the best AI-based Minecraft servers and plugins. Don't forget to check out our YouTube channel @xgaming_club! " +
             "I'll reply in the language you use: English or Hinglish (a mix of Hindi and English). If you type in Hinglish, I'll respond in Hinglish too. " +
-            "Feel free to ask for items like starter kits or to open menus. I'm here to make your experience awesome! Server Details play.xgaming.club port for pe/bedroch 19132  server mein jitne bhi plugins hai woh sab xgaming.club website pe available hai  also on spigotmc ,xgaming is the community that provides creators a ability to create games using the AI technology provided by xgaming u can checkout xgaming work in xgaming.club";
+            "Feel free to ask for items like starter kits or to open menus. I'm here to make your experience awesome! Server Details play.xgaming.club port for pe/bedrock 19132  server mein jitne bhi plugins hai woh sab xgaming.club website pe available hai  also on spigotmc ,xgaming is the community that provides creators a ability to create games using the AI technology provided by xgaming u can checkout xgaming work in xgaming.club";
 
     @Override
     public void onEnable() {
@@ -76,11 +76,13 @@ public class AI_NPC extends JavaPlugin implements Listener {
         if (CitizensAPI.getNPCRegistry().isNPC(event.getRightClicked())) {
             NPC npc = CitizensAPI.getNPCRegistry().getNPC(event.getRightClicked());
             Player player = event.getPlayer();
-
             if (npc.getName().equals("XG_AI")) {
-                player.sendMessage("Welcome To XGaming Lobby Here I am ready to assist you in any language");
+
                 double distance = player.getLocation().distance(npc.getEntity().getLocation());
                 if (distance <= 5) {
+                    if (!playerNpcInteraction.containsKey(player.getUniqueId())) {
+                        player.sendMessage("Welcome To XGaming Lobby! Here I am, ready to assist you in any language.");
+                    }
                     playerNpcInteraction.put(player.getUniqueId(), npc);
                     interactionTimestamps.put(player.getUniqueId(), System.currentTimeMillis());
                    //player.sendMessage(ChatColor.YELLOW+"Oh No You Went Out Of Range");
@@ -93,8 +95,8 @@ public class AI_NPC extends JavaPlugin implements Listener {
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
         String message = event.getMessage();
-player.sendMessage(player.getName()+"->"+message);
         if (playerNpcInteraction.containsKey(player.getUniqueId())) {
+            player.sendMessage(player.getName()+"->"+message);
             event.setCancelled(true); // Cancel the chat event to prevent public chat
 
             Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
