@@ -90,6 +90,17 @@
           <version>4.5.13</version>
       </dependency>
       <dependency>
+          <groupId>com.mixpanel</groupId>
+          <artifactId>mixpanel-java</artifactId>
+          <version>1.5.2</version>
+      </dependency>
+      <dependency>
+          <groupId>com.segment.analytics.java</groupId>
+          <artifactId>analytics</artifactId>
+          <version>3.4.0</version>
+          <type>jar</type>
+      </dependency>
+      <dependency>
           <groupId>org.json</groupId>
           <artifactId>json</artifactId>
           <version>20240303</version>
