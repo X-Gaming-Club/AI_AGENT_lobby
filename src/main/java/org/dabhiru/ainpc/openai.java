@@ -14,7 +14,7 @@ import org.json.JSONObject;
 public class openai {
 
     private static final String API_URL = "https://api.openai.com/v1/chat/completions";
-    private static final String API_KEY = "sk-proj-SCZ8qegWu2hEGGWlgbyJT3BlbkFJj7Pqi8BYVJUBO4qVX1Aq";
+    private static final String API_KEY = "";
 
     public static String getChatResponse(String prompt) throws Exception {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
